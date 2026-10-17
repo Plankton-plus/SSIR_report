@@ -17,6 +17,11 @@
 \usepackage{tikz}
 \usepackage{float}
 \usepackage[hidelinks,unicode,bookmarksopen=true,bookmarksnumbered=true,bookmarksdepth=2]{hyperref}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\floatname{algorithm}{算法}
+\renewcommand{\algorithmicrequire}{\textbf{输入：}}
+\renewcommand{\algorithmicensure}{\textbf{输出：}}
 
 \setstretch{1.5}
 \setlength{\parindent}{2em}
@@ -240,9 +245,7 @@ SSIR 正是面向这一需求提出的。它利用图像密钥控制现有公开
 具有较好的应用前景。
 % --- end chapters/chapter1-overview ---
 % --- chapters/chapter2-design ---
-\chapter{作品设计与实现}
-
-% 可包括系统方案、实现原理、硬件框图、软件流程、功能和指标等。
+\input{chapters/chapter2-design}
 % --- end chapters/chapter2-design ---
 % --- chapters/chapter3-testing ---
 \chapter{作品测试与分析}
