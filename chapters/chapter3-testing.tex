@@ -24,7 +24,7 @@
 
 \textbf{概率生成。}固定消息和图像密钥，分别独立采样初始图像及 R-FGSM 随机状态，完整生成 30 次；再固定初始图像，仅改变优化随机状态，生成 30 次。两组测试均未出现相同的固定精度输出。图~\ref{fig:probabilistic-cipher-images} 展示了第二组实验的代表性密文图像及其与原始图像的结构相似度，平均 SSIM 约为 $97.5\%$。这说明在所测样本中，内部随机优化也能改变输出，同时保持较高的视觉相似度；有限次数的未碰撞观察不能给出任意运行次数下的碰撞概率。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \IfFileExists{figures/cipher-images-original-panel.png}{%
   \def\cipherpanelpath{figures/cipher-images-original-panel.png}%
@@ -55,7 +55,7 @@
 
 \textbf{图像质量与泄漏抑制。}以 $L_1$、$L_2$、SSIM 和 PSNR 衡量密文图像与原图的差异。本作品将 $(1-\mathrm{SSIM})\times\mathrm{MSE}$ 定义为直接视觉泄漏的代理指标；它衡量可见差异，不能等同于密码学区分优势。各方法的直接泄漏指标与图像质量见表~\ref{tab:direct-leakage}。学习率分别为 $10^{-3}$、$10^{-4}$、$10^{-5}$ 时，该指标为 $39.34$、$0.41$、$0.08$，对应 PSNR 为 $26.62$、$38.14$、$41.93$~dB，SSIM 为 $72.24\%$、$95.89\%$、$97.99\%$。
 
-\begin{table}[H]
+\begin{table}[!htbp]
 \centering
 \caption{直接信息泄漏对比}
 \label{tab:direct-leakage}
@@ -80,7 +80,7 @@ SSIR（$\mathrm{lr}=10^{-5}$） & 41.93~dB & 97.99\% & 0.08 \\
 
 图~\ref{fig:psnr-ssim-ccdf} 展示了不同学习率下密文图像 PSNR 与 SSIM 的互补累积分布。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \IfFileExists{figures/psnr-ssim-ccdf-zh.png}{%
   \includegraphics[width=\textwidth]{figures/psnr-ssim-ccdf-zh.png}%
@@ -97,7 +97,7 @@ SSIR（$\mathrm{lr}=10^{-5}$） & 41.93~dB & 97.99\% & 0.08 \\
 
 图~\ref{fig:indirect-leakage} 比较了 ResNet50、DenseNet121、EfficientNet V2 和 Inception V3 在启用与关闭间接泄漏损失时的神经元状态偏差。四个模型的平均降幅为 $56.02\%$。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \IfFileExists{figures/indirect-leakage-zh.png}{%
   \includegraphics[width=\textwidth]{figures/indirect-leakage-zh.png}%

@@ -139,7 +139,7 @@
 \subsection{系统流程}
 在明确底层原理的基础上，图~\ref{fig:lifecycle} 展示了 SSIR 从参数协商到消息还原的完整运行生命周期。通信双方在初始化阶段完成图像密钥共享与编码配置同步后，即可持续开展保密通信：发送方在本地完成迭代式的密文图像生成，并将结果以无损图像格式投入公开信道；接收方获取图像后通过单次前向推理完成确定性解码。这种非对称的计算负载分配使得复杂的对抗优化完全由发送方承担，极大减轻了接收方的实时处理负担。
 
-\begin{figure}[htbp]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig-lifecycle}
     \caption{系统生命周期}
@@ -148,14 +148,14 @@
 
 发送端生成密文图像的具体执行逻辑如图~\ref{fig:gen-flow} 与算法~\ref{alg:gen} 所示。算法以随机初始图像 \(r\)、执行级随机状态 \(\xi\)、明文 \(m\) 及共享图像密钥 \(k\) 等作为输入。初始化完成后，发送方在 `while` 循环中持续检验当前融合图像 \(p_n+k\) 所触发的编码比特串是否已收敛至目标串 \(S_t\)。只要两者存在偏差，算法便计算包含位错误损失、直接泄漏损失与间接泄漏损失的联合目标函数 \(L^{(n)}\)，并调用结合了固定精度截断算子 \(T_{\mathrm{trc}}\) 的 R-FGSM 规则更新扰动图像 \(p_{n+1}\)。一旦某轮迭代后满足 \(\mathrm{Ec}(z(p_n+k); g, t) = S_t\)，循环立即终止，此时的扰动图像 \(p_n\) 即作为密文图像 \(c\) 输出。
 
-\begin{figure}[htbp]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig-gen-flow}
     \caption{密文图像生成流程}
     \label{fig:gen-flow}
 \end{figure}
 
-\begin{algorithm}[htbp]
+\begin{algorithm}[!htbp]
     \caption{密文图像生成}
     \label{alg:gen}
     \begin{algorithmic}[1]
@@ -175,7 +175,7 @@
 
 相对应地，接收端的消息恢复流程如图~\ref{fig:recover-flow} 所示。接收方将密文图像与本地图像密钥逐像素叠加后送入 DNN，提取目标层选定神经元的激活状态，经分组均值计算与阈值二值化还原出目标比特串，最后通过逆编码映射恢复出明文消息。整个恢复链路均为确定性张量运算，不涉及任何随机采样或梯度迭代。
 
-\begin{figure}[htbp]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig-recover-flow}
     \caption{消息恢复流程}
@@ -185,7 +185,7 @@
 \subsection{功能模块}
 依据上述系统架构与运行流程，SSIR 在软件实现上解耦为密钥与配置管理、编码、状态诱导、泄漏抑制以及密钥叠加与恢复五个核心功能模块，各模块间的调用与协作关系如图~\ref{fig:modules} 所示。
 
-\begin{figure}[htbp]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig-modules}
     \caption{系统功能模块}
