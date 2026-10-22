@@ -40,6 +40,15 @@
 % 仅在必要时增加段落的可伸展间距，避免长英文术语越过右边界。
 \setlength{\emergencystretch}{3em}
 
+% 允许同一页容纳多个相邻图表或算法，避免它们被集中挤到纯浮动页。
+\setcounter{topnumber}{4}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{5}
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.78}
+
 \newlength{\@projwidth}
 \newcommand{\projectname}[1]{\def\@projectname{#1}}
 \newcommand{\submissiondate}[1]{\def\@submissiondate{#1}}
